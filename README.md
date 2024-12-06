@@ -156,7 +156,8 @@ Fill the fields and create the Milvus service.
 
 ![Milvus config with minio](media/milvus-config.png)
 
-> [!NOTE] The Starter service configuration is no longer available. However, for some CP4D/watsonx.data versions, you may be able to see the Starter configuration for Milvus. With this option, you can choose to use an external storage, or an IBM managed storage, or the embedded MinIO store named wxd-milvus-minio. 
+> [!NOTE] 
+> The Starter service configuration is no longer available. However, for some CP4D/watsonx.data versions, you may be able to see the Starter configuration for Milvus. With this option, you can choose to use an external storage, or an IBM managed storage, or the embedded MinIO store named wxd-milvus-minio. 
 
 ![Mivlus Starter](media/milvus-service-config-starter.png)
 
