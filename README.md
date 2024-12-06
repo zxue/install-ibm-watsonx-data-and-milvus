@@ -8,7 +8,7 @@ This document outlines the steps to install watsonx.data and Milvus. For more de
 - [Installing watsonx.data](https://www.ibm.com/docs/en/watsonx/watsonxdata/2.0.x?topic=deployment-installing)
 - [Adding a Milvus service](https://www.ibm.com/docs/en/watsonx/watsonxdata/2.0.x?topic=milvus-adding-service)
 
-## Install watsonx.data
+## Installing watsonx.data
 
 Download the latest version of Cloud Pak for Data [CPD-CLI](https://github.com/IBM/cpd-cli/releases) command. 
 
@@ -204,6 +204,44 @@ milvus_client = MilvusClient(uri=_URI,
                             server_name=_SERVERNAME,
                             server_pem_path="milvus.tls.crt")
 ```
+
+## Troubleshooting deployment and configuration issues
+
+During watsonx.data deployment, you may encounter errors when running the `cpd-cli` commands listed in the "Installing watsonx.data" section. As a first troubleshooting attempt, you can re-run the same command to see if the issue is taken care of.
+
+### CP4D versions mismatched
+
+It is important that you check the CP4D version when adding watsonx.data to an existing environment.  
+
+```
+# check CP4D version
+./cpd-cli manage get-cr-status  --cpd_instance_ns=${PROJECT_CPD_INST_OPERANDS}
+```
+
+If an incorrect version is used, you may get an error that looks similar to the following. Correct the CP4D version and run the commands.
+
+```
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "[ERROR] Playbook failed while running 'wait_for_cr.yml' of 'wxdaddon' for component 'watsonx_data' in namespace 'ibm-cpd'. The custom resources for the following components are already updated for the ['cpd_platform', 'watsonx_data'] release 5.0.3."}
+```
+
+### Insufficient CPU and Memory
+
+When deploying watsonx.data to a new or existing OpenShift environment, you may find some pods, e.g. the lakehouse presto pod, are crashed, due to insufficient CPU and Memory. You may see some error details in the pod Events. Add more computing resources and re-run the commands.
+
+```
+0/11 nodes are available: 3 node(s) had untolerated taint {node-role.kubernetes.io/master: }, 3 node(s) had untolerated taint {node.ocs.openshift.io/storage: true}, 4 Insufficient memory, 5 Insufficient cpu. preemption: 0/11 nodes are available: 5 No preemption victims found for incoming pod, 6 Preemption is not helpful for scheduling.
+```
+
+### Operators are in unknown state
+
+You may notice that one or more operators are not installed correctly. Delete the problematic operators and re-run the command. If necessary, re-run all the commands.
+
+- analyticsengine-operator	
+- ibm-lakehouse-operator	
+
+### Connection to storage failed in Infrastructure Manager
+
+Check the bucket name, region if applicable, access key, secret key and endpoint. For example, with MinIO storage, use the local url instead of the public https url. Ensure the region matches the endpoint for storage services.
 
 ## Acknowledgement
 
