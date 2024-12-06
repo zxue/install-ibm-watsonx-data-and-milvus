@@ -143,13 +143,6 @@ You can use an existing or create a new S3 bucket in your Amazon AWS account, an
 
 ![wxdata AWS S3 Storage](media/wxdata-aws-s3-storage.png)
 
-
-### Using the embedded minio storage
-
-The Starter service configuration is no longer available. However, for some CP4D/watsonx.data versions, you may be able to see the Starter configuration for Milvus. With this option, you can choose to use an external storage, or an IBM managed storage, or the embedded MinIO store named wxd-milvus-minio. 
-
-![Mivlus Starter](media/milvus-service-config-starter.png)
-
 ## Adding a Milvus service
 
 Select Infrastructure Manager from the navigation menu on the left side. Click on "Add components" and select "Milvus" in the Services category.
@@ -162,6 +155,10 @@ Fill the fields and create the Milvus service.
 - Path: any valid name for Milvus data and logs
 
 ![Milvus config with minio](media/milvus-config.png)
+
+> [!NOTE] The Starter service configuration is no longer available. However, for some CP4D/watsonx.data versions, you may be able to see the Starter configuration for Milvus. With this option, you can choose to use an external storage, or an IBM managed storage, or the embedded MinIO store named wxd-milvus-minio. 
+
+![Mivlus Starter](media/milvus-service-config-starter.png)
 
 Once the storage and Milvus service configurations are completed, you'll see a visual representation. It takes 15 minutes or so until the Milvus service is ready to use and its icon changes to the green color.
 
