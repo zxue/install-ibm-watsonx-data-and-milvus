@@ -81,7 +81,7 @@ Check more details on [how to install minio](https://min.io/docs/minio/kubernete
 oc apply -k minio
 ```
 
-Navigate to the networking services for the Minio storage, and make a note of the hostname, e.g. "minio-service.minio.svc.cluster.local". Note: the `oc describe service minio-service -n minio` does not include the hostname.
+Navigate to the networking services for the Minio storage, and make a note of the hostname, e.g. "minio-service.minio.svc.cluster.local", and the api port number. Note: the `oc describe service minio-service -n minio` does not include the hostname.
 
 > ![IMPORTANT] 
 > You will use the hostname plus the port number e.g. 9000 as the endpoint, not the url you find in networking routes, when configuring storage in watsonx.data.
