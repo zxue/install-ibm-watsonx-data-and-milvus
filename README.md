@@ -241,7 +241,7 @@ You may notice that one or more operators are not installed correctly. Delete th
 
 ### Connection to storage failed in Infrastructure Manager
 
-Check the bucket name, region if applicable, access key, secret key and endpoint. For example, with MinIO storage, use the local url instead of the public https url. Ensure the region matches the endpoint for storage services.
+Check the bucket name, region if applicable, access key, secret key and endpoint. For example, with MinIO storage, use the local url with the port number, instead of the public https url. Ensure the region matches the endpoint for storage services.
 
 ## Acknowledgement
 
