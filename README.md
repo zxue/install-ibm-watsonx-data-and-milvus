@@ -106,10 +106,14 @@ Select Infrastructure Manager from the navigation menu on the left side. Click o
 - Access key
 - Secret key
 
-
 ![wxdata-minio-config](media/wxdata-minio-storage.png)
 
 ### using IBM Cloud Object Storage
+
+Log in to your ibm cloud account, find an existing storage instance or create a new one. Use the existing bucket or create a new bucket.
+
+![ibm cloud object storage HMAC](media/ibm-cos-hmac.png)
+
 
 ### using Amazon AWS S3 storage
 
@@ -172,4 +176,4 @@ milvus_client = MilvusClient(uri=_URI,
 
 ## Acknowledgement
 
-Many thanks to my IBMer, Nischay Yadav who helped me unblock several issues related to storage and Milvus configurations, and shared sample python code for testing.
+Many thanks to my IBMer, Nischay Yadav who helped me unblock several issues related to storage and Milvus configurations, and shared sample python code for testing. Also, thanks to my teammate, Brandon Brown who provided his s3 storage for testing.
