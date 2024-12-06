@@ -83,7 +83,7 @@ oc apply -k minio
 
 Navigate to the networking services for the Minio storage, and make a note of the hostname, e.g. "minio-service.minio.svc.cluster.local", and the api port number. Note: the `oc describe service minio-service -n minio` does not include the hostname.
 
-> ![IMPORTANT] 
+> [!IMPORTANT] 
 > You will use the hostname plus the port number e.g. 9000 as the endpoint, not the url you find in networking routes, when configuring storage in watsonx.data.
 
 You can find the url from the networking routes, e.g. `https://minio-route-minio.apps.xxx.com`,  and login with the default credentials, with username `minio123` and password `minio123`
