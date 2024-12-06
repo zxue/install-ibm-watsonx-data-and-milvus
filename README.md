@@ -57,11 +57,57 @@ export COMPONENTS=cpd_platform,watsonx_data
 
 ```
 
-## Adding a Milvus service
+## Adding storage for Milvus
 
-Before adding a Milvus service, you must configure storage. 
+Before adding a Milvus service, you must create and configure storage first. You can use any of the following storage services that watsonx.data supports. We will go over three of them marked with `*`. 
+- IBM Cloud Object Storage *
+- IBM Storage Ceph
+- IBM Storage Scale
+- Amazon S3 *
+- Google Cloud Storage
+- HDFS
+- MinIO *
+- Azure Data Lake Storage
 
-### using an external minio storage
+### Using an external minio storage
+
+First, create a minio storage in the same OpenShift cluster. Ensure that you have downloaded the three yaml files, `kustomization.yml`,`minio.yml`,`pvc.yml`, and save them to the minio folder. Navigate to the parent folder and run the command lines below to create the Minio storage in its own namespace, `minio`, which is created automatically. 
+
+Check more details on [how to install minio](https://min.io/docs/minio/kubernetes/openshift/operations/installation.html)
+
+```
+#oc new-project minio
+#cd ..
+oc apply -k minio
+```
+
+Navigate to the networking services for the Minio storage, and make a note of the hostname, e.g. "minio-service.minio.svc.cluster.local". Note: the `oc describe service minio-service -n minio` does not include the hostname.
+
+> ![IMPORTANT] 
+> You will use the hostname plus the port number e.g. 9000 as the endpoint, not the url you find in networking routes, when configuring storage in watsonx.data.
+
+You can find the url from the networking routes, e.g. `https://minio-route-minio.apps.xxx.com`,  and login with the default credentials, with username `minio123` and password `minio123`
+
+![Minio](media/minio.png)
+
+Create a new bucket, a new user and its service account and grant the user with read/write access permissions. By default, the bucket's access policy is set to be Private. Make a note of the access key and secret key.
+
+![Minio-bucket](media/minio-bucket.png)
+
+Now you are ready to use the minio storage for Milvus. 
+
+Log in to the cp4d platform. Locate the lakehouse instance in Services | Instances. Launch the watsonx.data web console. Note: you can find the cpadmin credentails in the "ibm-iam-bindinfo-platform-auth-idp-credentials" secret in the cp4d namespace in OpenShift.
+
+Select Infrastructure Manager from the navigation menu on the left side. Click on "Add components" and select "MinIO" in the storage category. Fill the following fields, and then test the connection.
+
+- Display name, e.g. mymilvus
+- Bucket name, e.g. miniobucket
+- Endpoint, e.g.  http://minio-service.minio.svc.cluster.local:9000
+- Access key
+- Secret key
+
+
+![wxdata-minio-config](media/wxdata-minio-storage.png)
 
 ### using IBM Cloud Object Storage
 
@@ -69,5 +115,12 @@ Before adding a Milvus service, you must configure storage.
 
 ### using the embedded minio storage
 
+## Adding a Milvus service
 
+Select Infrastructure Manager from the navigation menu on the left side. Click on "Add components" and select "Minio" in the Services category.
 
+![Milvus config with minio](media/milvus-config.png)
+
+Once the storage and Milvus service configurations are completed, you'll see a visual representation.
+
+![Minio-bucket](media/wxdata-infrastructure-manager.png)
