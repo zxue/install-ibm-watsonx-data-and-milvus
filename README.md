@@ -169,3 +169,7 @@ milvus_client = MilvusClient(uri=_URI,
                             server_name=_SERVERNAME,
                             server_pem_path="milvus.tls.crt")
 ```
+
+## Acknowledgement
+
+Many thanks to my IBMer, Nischay Yadav who helped me unblock several issues related to storage and Milvus configurations, and shared sample python code for testing.
