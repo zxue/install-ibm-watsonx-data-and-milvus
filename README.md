@@ -108,7 +108,7 @@ Select Infrastructure Manager from the navigation menu on the left side. Click o
 
 ![wxdata-minio-config](media/wxdata-minio-storage.png)
 
-### using IBM Cloud Object Storage
+### Using IBM Cloud Object Storage
 
 Log in to your ibm cloud account, find an existing storage instance or create a new one. Select the "Service credentials" tab and create a new credential. Make sure that you enable the HMAC option. Make a note of the access key and the secret access key in the json file. Note: this new credential has access to all buckets in the storage instance.
 
@@ -133,13 +133,22 @@ Log in to your ibm cloud account, find an existing storage instance or create a 
 
 Use the existing bucket or create a new bucket. Select the Configuration tab. Make a note of the public endpoint, e.g. "s3.us-south.cloud-object-storage.appdomain.cloud".
 
-Similar to the MinIO storage option, you can create a storage for Milvus using IBM Cloud Object Storage.
+Similar to the MinIO storage option, you can create a storage for Milvus using IBM Cloud Object Storage. Make sure that the region matches the public endpoint.
 
 ![wxdata IBM COS](media/wxdata-ibm-cos-storage.png)
 
-### using Amazon AWS S3 storage
+### Using Amazon AWS S3 storage
 
-### using the embedded minio storage
+You can use an existing or create a new S3 bucket in your Amazon AWS account, and then configure the storage for Milvus. Make sure that the region matches the public endpoint, which is available at [Amazon S3 endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html).
+
+![wxdata AWS S3 Storage](media/wxdata-aws-s3-storage.png)
+
+
+### Using the embedded minio storage
+
+The Starter service configuration is no longer available. However, for some CP4D/watsonx.data versions, you may be able to see the Starter configuration for Milvus. With this option, you can choose to use an external storage, or an IBM managed storage, or the embedded MinIO store named wxd-milvus-minio. 
+
+![Mivlus Starter](media/milvus-service-config-starter.png)
 
 ## Adding a Milvus service
 
