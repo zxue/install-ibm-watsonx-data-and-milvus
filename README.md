@@ -110,12 +110,30 @@ Select Infrastructure Manager from the navigation menu on the left side. Click o
 
 ### using IBM Cloud Object Storage
 
-Log in to your ibm cloud account, find an existing storage instance or create a new one. Use the existing bucket or create a new bucket.
+Log in to your ibm cloud account, find an existing storage instance or create a new one. Select the "Service credentials" tab and create a new credential. Make sure that you enable the HMAC option. Make a note of the access key and the secret access key in the json file. Note: this new credential has access to all buckets in the storage instance.
+
+```
+{
+    "apikey": "b0EUeb7wARLTbUQUpJ5M...",
+    "cos_hmac_keys": {
+        "access_key_id": "0f2734622...",
+        "secret_access_key": "d1b6de4f863e85cac..."
+    },
+    "endpoints": "https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints",
+    "iam_apikey_description": "Auto-generated for key crn:v1:bluemix:public:cloud-object-storage:global:a/67c595908...",
+    "iam_apikey_id": "ApiKey-68d942dd-...",
+    "iam_apikey_name": "milvusnewcr",
+    "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+    "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/67c5959...::serviceid:ServiceId-075e670b-...",
+    "resource_instance_id": "crn:v1:bluemix:public:cloud-object-storage:global:a/67c5959082db4698b82cb36...::"
+}
+```
 
 ![ibm cloud object storage HMAC](media/ibm-cos-hmac.png)
 
-s3.us-south.cloud-object-storage.appdomain.cloud
+Use the existing bucket or create a new bucket. Select the Configuration tab. Make a note of the public endpoint, e.g. "s3.us-south.cloud-object-storage.appdomain.cloud".
 
+Similar to the MinIO storage option, you can create a storage for Milvus using IBM Cloud Object Storage.
 
 ![wxdata IBM COS](media/wxdata-ibm-cos-storage.png)
 
