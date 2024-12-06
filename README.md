@@ -128,6 +128,44 @@ Fill the fields and create the Milvus service.
 
 ![Milvus config with minio](media/milvus-config.png)
 
-Once the storage and Milvus service configurations are completed, you'll see a visual representation.
+Once the storage and Milvus service configurations are completed, you'll see a visual representation. It takes 15 minutes or so until the Milvus service is ready to use and its icon changes to the green color.
 
 ![Minio-bucket](media/wxdata-infrastructure-manager.png)
+
+Click on the service, you will see the GRPC host, which can be used in python code and HTTPs host for restful API calls.
+
+```
+GRPC host
+ibm-lh-lakehouse-milvus743.milvus.apps.xxx.com
+
+HTTPS host
+https://ibm-lh-lakehouse-milvus743-milvus-rest-ibm-wx-operands.apps.xxx.com
+
+Associated bucket
+milvusbucket
+
+Path
+/logpath/milvus743/
+```
+
+## Connecting to the Milvus service in Python code
+
+The code snippets demonstrate how to connect to the service. In addition to the admin or user credentials, you will need the GPRC host name and port, and the certificate. 
+
+You can find the certificate in the secret named "ibm-lh-tls-secret" in the cp4d namespace in OpenShift. Save it to a text file, e.g. "milvus.tls.crt". 
+
+```
+# pip install pymilvus==2.5.0
+
+from pymilvus import MilvusClient, DataType, connections
+
+_URI = f"https://ibm-lh-lakehouse-milvus743.milvus.apps.xxx.com:443"  # Construct URI from host and port
+_SERVERNAME="ibm-lh-lakehouse-milvus743.milvus.apps.xxx.com"
+
+# Create an instance of the MilvusClient class with the new configuration
+milvus_client = MilvusClient(uri=_URI, 
+                            user='cpadmin', password='xxx',
+                            secure=True,
+                            server_name=_SERVERNAME,
+                            server_pem_path="milvus.tls.crt")
+```
