@@ -100,7 +100,7 @@ Log in to the cp4d platform. Locate the lakehouse instance in Services | Instanc
 
 Select Infrastructure Manager from the navigation menu on the left side. Click on "Add components" and select "MinIO" in the storage category. Fill the following fields, and then test the connection.
 
-- Display name, e.g. mymilvus
+- Display name, e.g. miniostorage
 - Bucket name, e.g. miniobucket
 - Endpoint, e.g.  http://minio-service.minio.svc.cluster.local:9000
 - Access key
@@ -117,7 +117,14 @@ Select Infrastructure Manager from the navigation menu on the left side. Click o
 
 ## Adding a Milvus service
 
-Select Infrastructure Manager from the navigation menu on the left side. Click on "Add components" and select "Minio" in the Services category.
+Select Infrastructure Manager from the navigation menu on the left side. Click on "Add components" and select "Milvus" in the Services category.
+
+Fill the fields and create the Milvus service.
+
+- Display name, e.g. Milvus
+- Service configuration: small, medium, or large
+- Storage: choose the storage you configured
+- Path: any valid name for Milvus data and logs
 
 ![Milvus config with minio](media/milvus-config.png)
 
