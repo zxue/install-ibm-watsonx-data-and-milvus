@@ -117,7 +117,7 @@ Log in to your ibm cloud account, find an existing storage instance or create a 
 s3.us-south.cloud-object-storage.appdomain.cloud
 
 
-![wxdata IBM COS](media/ibm-cos-storage.png)
+![wxdata IBM COS](media/wxdata-ibm-cos-storage.png)
 
 ### using Amazon AWS S3 storage
 
