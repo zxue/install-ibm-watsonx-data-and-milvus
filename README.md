@@ -188,7 +188,7 @@ The code snippets demonstrate how to connect to the service. In addition to the 
 You can find the certificate in the secret named "ibm-lh-tls-secret" in the cp4d namespace in OpenShift. Save it to a text file, e.g. "milvus.tls.crt". 
 
 ```
-# pip install pymilvus==2.5.0
+# pip install pymilvus==2.4.0
 
 from pymilvus import MilvusClient, DataType, connections
 
