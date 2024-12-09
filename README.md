@@ -1,4 +1,4 @@
-# How to Install IBM watsonx.data and Milvus
+# How to Install and Configure IBM watsonx.data and Milvus
 
 IBM watsonx.data, which is part of the IBM watsonx platform, is a data store that helps businesses scale AI and analytics. It is built on an open lakehouse architecture that combines elements of data warehouses and data lakes. It supports open data formats and includes built-in governance, security, and automation. 
 
