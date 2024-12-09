@@ -185,10 +185,17 @@ Path
 
 The code snippets demonstrate how to connect to the service. In addition to the admin or user credentials, you will need the GPRC host name and port, and the certificate. 
 
-You can find the certificate in the secret named "ibm-lh-tls-secret" in the cp4d namespace in OpenShift. Save it to a text file, e.g. "milvus.tls.crt". 
+You can find the certificate by running the [command lines](https://docs.openshift.com/container-platform/4.15/nodes/pods/nodes-pods-secrets.html) below. 
 
 ```
-# pip install pymilvus==2.4.0
+oc login --token=sha256~y177r3dxxx --server=https://api.xxx.com:6443
+oc get secret ibm-lh-tls-secret -n ibm-wx-operands -o jsonpath="{.data['tls\.crt']}" | base64 -d > milvus.tls.crt
+```
+
+Or, you can find it in the secret named "ibm-lh-tls-secret" in the cp4d namespace in OpenShift. Save it to a text file, e.g. "milvus.tls.crt". 
+
+```
+# pip install pymilvus==2.5.0
 
 from pymilvus import MilvusClient, DataType, connections
 
@@ -245,7 +252,7 @@ Check the bucket name, region if applicable, access key, secret key and endpoint
 
 ### Certificate issue
 
-You may get a handshake failure shortly after the connection is made successfully. This is likely caused by pymilvus version compatiblity. The currently support pymilvus version is 2.4.0. Install the supported version and re-run the python code.
+You may get a handshake failure shortly after the connection is made successfully. This is likely caused by an invalid certificate used in a previous connection attempt. Restart the python kernel and re-run the python code.
 
 ```
 E1206 10:13:18.832863000 13103345664 ssl_transport_security.cc:1653]   Handshake failed with fatal error SSL_ERROR_SSL: error:1000007d:SSL routines:OPENSSL_internal:CERTIFICATE_VERIFY_FAILED.
