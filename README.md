@@ -203,6 +203,8 @@ milvus_client = MilvusClient(uri=_URI,
                             server_pem_path="milvus.tls.crt")
 ```
 
+With the connection, you can create collections, insert data, create indexes, and perform searches.  Check out the sample [Milvus notebook](/scripts/milvus.ipynb).
+
 ## Troubleshooting deployment and configuration issues
 
 During watsonx.data deployment, you may encounter errors when running the `cpd-cli` commands listed in the "Installing watsonx.data" section. As a first troubleshooting attempt, you can re-run the same command to see if the issue is taken care of.
@@ -240,6 +242,14 @@ You may notice that one or more operators are not installed correctly. Delete th
 ### Connection to storage failed in Infrastructure Manager
 
 Check the bucket name, region if applicable, access key, secret key and endpoint. For example, with MinIO storage, use the local url with the port number, instead of the public https url. Ensure the region matches the endpoint for storage services.
+
+### Certificate issue
+
+You may get a handshake failure shortly after the connection is made successfully. This is likely caused by pymilvus version compatiblity. The currently support pymilvus version is 2.4.0. Install the supported version and re-run the python code.
+
+```
+E1206 10:13:18.832863000 13103345664 ssl_transport_security.cc:1653]   Handshake failed with fatal error SSL_ERROR_SSL: error:1000007d:SSL routines:OPENSSL_internal:CERTIFICATE_VERIFY_FAILED.
+```
 
 ## Acknowledgement
 
